@@ -1,0 +1,19 @@
+{
+    "manifest_version": 3,
+    "name": "Webbie Devvie",
+    "version": "69.420",
+    "description": "Webbie Devvie", 
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"], 
+            "js": ["contentScript.js"]
+        }
+    ], 
+    "action": {
+        "default_popup": "popup.html"
+    }, 
+    "permissions": ["tabs", "storage"], 
+    "background": {
+        "service_worker": "background.js"
+    }
+}  
