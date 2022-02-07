@@ -1,8 +1,12 @@
-const inputElement = document.querySelectorAll("input")[0]; 
+// listen for the input element to give values 
+// and then send a message to the content script. 
+
+const inputElement = document.getElementsByTagName('input')[0];
 
 inputElement.addEventListener("change", () => {
-    // send this to the content script
-    chrome.tabs.query({"active": true, currentWindow: true}).then(tabs => {
-        chrome.tabs.sendMessage(tabs[0].id, { "font": inputElement.value }); 
-    });
+    // send a message to the content script saying what value the input has.
+    chrome.tabs.query({"active": true, currentWindow: true}, (tabs) => {
+        // tab[0] is the current tab that their on 
+       chrome.tabs.sendMessage(tabs[0].id, {"font": inputElement.value});
+    }) 
 })
