@@ -1,18 +1,15 @@
 {
     "manifest_version": 3,
     "name": "Web Devvie",
-    "version": "69.420", 
+    "version": "69.420",
     "content_scripts": [
         {
-            "matches": ["<all_urls>"], 
+            "matches": ["<all_urls>"],
             "js": ["contentScript.js"]
         }
     ],
     "action": {
         "default_popup": "popup.html"
-    },
-    "permissions": ["tabs", "storage"], 
-    "background": {
-        "service_worker": "background.js"
-    }
+    }, 
+    "permissions": ["tabs", "storage"]
 }  

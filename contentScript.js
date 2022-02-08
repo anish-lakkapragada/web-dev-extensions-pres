@@ -1,13 +1,8 @@
-/**
- * Lives on the browser side (not Node)
- *  - have access to the DOM
- *  - runs on the pages that your user is viewing
- * https://yt3.ggpht.com/ytc/AKedOLTvfmestRDOauidtnc3z5hlVPt8UksjaE0yzIFJ=s176-c-k-c0x00ffffff-no-rj
- */
-
-
-// content script receives the message
-
+/*window.addEventListener("load", () =>{
+    for (const image of document.querySelectorAll("img")) {
+        image.src = "https://lhswebdev.github.io/images/profiles/sangmin.png";
+    }
+})*/
 
 function addStyle(styleString) {
     const style = document.createElement('style');
@@ -17,23 +12,25 @@ function addStyle(styleString) {
 
 window.addEventListener("load", () => {
     chrome.storage.sync.get(['font'], (result) => {
-        if (result.font != null) {
-            addStyle(`
-                * {
-                    font-family: ${result.font} !important;
-                }
-            `);
-        }
+        if (result.font == null) {return;}
+        addStyle(`
+            * {
+                font-family: ${result.font} !important;
+            }
+        `); 
     })
-})
-  
+}); 
+
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    console.log(request);
     const {font} = request; 
-    // inject this font onto the page. 
-    chrome.storage.sync.set({"font": font});
     addStyle(`
         * {
-            font-family : ${font} !important; 
+            font-family: ${font} !important;
         }
     `); 
+
+    chrome.storage.sync.set({"font": font});
+
+
 })

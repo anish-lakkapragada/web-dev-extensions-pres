@@ -1,3 +1,3 @@
 chrome.runtime.onInstalled.addListener(() => {
-    chrome.storage.sync.set({"font": "Monospace"});
-})
+    chrome.storage.sync.set({"font": "Comic Sans MS"});
+}); 
